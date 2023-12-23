@@ -2,12 +2,13 @@
 import React from 'react';
 import { Sidebar } from 'flowbite-react';
 import {
-  HiArrowSmRight,
-  HiInbox,
-  HiShoppingBag,
   HiTable,
-  HiUser,
 } from 'react-icons/hi';
+import { MdOutlineDashboard, MdDashboard } from "react-icons/md";
+import { HiOutlineUsers, HiOutlineQueueList } from "react-icons/hi2";
+import { RiUserStarLine } from "react-icons/ri";
+import { BiClinic } from "react-icons/bi";
+import { Link, useLocation } from 'react-router-dom';
 // import {
 //     HiArrowSmRight,
 //     HiInbox,
@@ -17,8 +18,7 @@ import {
 //     HiTable,
 //     HiUser,
 //   } from 'react-icons/hi';
-import { MdOutlineDashboard, MdDashboard } from "react-icons/md";
-import { Link, useLocation } from 'react-router-dom';
+
 // import { twMerge } from 'tailwind-merge';
 
 const AppSidebar = () => {
@@ -28,7 +28,7 @@ const AppSidebar = () => {
     return (
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.Items>
-            <div className="p-4 text-lg font-bold">Your Title Here</div>
+            <div className="text-2xl p-1 font-bold flex justify-center">QMANS AI.D</div>
             <Sidebar.ItemGroup>
                 <Sidebar.Item 
                     as={Link} 
@@ -51,20 +51,20 @@ const AppSidebar = () => {
                     <Sidebar.Item href="#">Refunds</Sidebar.Item>
                     <Sidebar.Item href="#">Shipping</Sidebar.Item>
                 </Sidebar.Collapse> */}
-                <Sidebar.Item href="#" icon={HiInbox}>
-                Inbox
+                <Sidebar.Item href="#" icon={RiUserStarLine}>
+                    Role
                 </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiUser}>
-                Users
+                <Sidebar.Item href="#" icon={HiOutlineUsers}>
+                    Users
                 </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiShoppingBag}>
-                Products
+                <Sidebar.Item href="#" icon={BiClinic}>
+                    Clinics
                 </Sidebar.Item>
-                <Sidebar.Item href="#" icon={HiArrowSmRight}>
-                Sign In
+                <Sidebar.Item href="#" icon={HiOutlineQueueList}>
+                    Queue
                 </Sidebar.Item>
                 <Sidebar.Item href="#" icon={HiTable}>
-                Sign Up
+                    Sign Up
                 </Sidebar.Item>
             </Sidebar.ItemGroup>
             </Sidebar.Items>
