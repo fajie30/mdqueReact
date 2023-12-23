@@ -21,10 +21,14 @@ module.exports = {
           900: '#4c1d95'
         },
       },
+      backdropBlur: {
+        'none': '0',
+        'blur': 'blur(20px)',
+      }
     },
   },
   variants: {
-    extend: {},
+    extend: {backdropBlur: ['responsive']},
   },
   plugins: [
     require('flowbite/plugin'),
