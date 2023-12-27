@@ -3,9 +3,10 @@ import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 
 const Header = ({ pageTitle }) => {
   return (
-    <Navbar fluid className="rounded-xl">
+    <Navbar fluid className="rounded-xl bg-gray-100 p-4">
       <Navbar.Brand>
-        <h1 className="p-4 text-3xl font-bold text-gray-900">{ pageTitle }</h1>
+        
+        <h1 className="p-3 text-4xl font-bold text-purple-600">{ pageTitle }</h1>
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Dropdown
@@ -16,10 +17,8 @@ const Header = ({ pageTitle }) => {
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+            <span className="block text-sm">Fajie Bautista</span>
           </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>

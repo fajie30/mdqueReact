@@ -2,7 +2,7 @@ import Header from '../Layout/Head';
 const Dashboard = () => {
     return(
         <>
-            <Header pageTitle="Main Dashboard" />
+            <Header pageTitle="Dashboard Overview" />
         </>
     );
 }
