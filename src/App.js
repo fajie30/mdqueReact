@@ -5,9 +5,9 @@ import Layout from './components/Layout/Layout.js';
 
 function App() {
   return (
-    <>
+    <div className="font-sans">
       <Layout />
-    </>
+    </div>
   );
 }
 

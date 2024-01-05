@@ -34,7 +34,7 @@ const AppSidebar = () => {
     return (
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
         <Sidebar.Items>
-            <div className="text-xl py-5 font-bold flex justify-center">QMANS AI.D</div>
+            <div className="text-xl py-5 flex justify-center tracking-widest">QMANS AI.D</div>
             <Sidebar.ItemGroup>
                 <Sidebar.Item 
                      as={Link} 
@@ -46,22 +46,9 @@ const AppSidebar = () => {
                              Icon={TbLayoutDashboard} 
                              color={isDash ? 'text-purple-500 text-2xl' : 'text-gray-500 text-2xl'} 
                          />
-                         <span className="font-semibold">Dashboard</span>
+                         <span>Dashboard</span>
                      </div>
                 </Sidebar.Item>
-                {/* <Sidebar.Collapse
-                icon={HiShoppingBag}
-                label="E-commerce"
-                    renderChevronIcon={(theme, open) => {
-                        const IconComponent = open ? HiOutlineMinusSm : HiOutlinePlusSm;
-                        return <IconComponent aria-hidden className={twMerge(theme.label.icon.open[open ? 'on' : 'off'])} />;
-                    }}
-                    >
-                    <Sidebar.Item href="#">Products</Sidebar.Item>
-                    <Sidebar.Item href="#">Sales</Sidebar.Item>
-                    <Sidebar.Item href="#">Refunds</Sidebar.Item>
-                    <Sidebar.Item href="#">Shipping</Sidebar.Item>
-                </Sidebar.Collapse> */}
                 <Sidebar.Item 
                     as={Link} 
                     to="/admin/user" 
@@ -72,7 +59,7 @@ const AppSidebar = () => {
                              Icon={TbUser} 
                              color={isUser ? 'text-purple-500 text-2xl' : 'text-gray-500 text-2xl'} 
                          />
-                         <span className='font-semibold'>User</span>
+                         <span>User</span>
                      </div>
                 </Sidebar.Item>
                 <Sidebar.Item 
@@ -85,7 +72,7 @@ const AppSidebar = () => {
                              Icon={TbBuildingHospital} 
                              color={isClinic ? 'text-purple-500 text-2xl' : 'text-gray-500 text-2xl'} 
                          />
-                         <span className='font-semibold'>Clinic</span>
+                         <span>Clinic</span>
                      </div>
                 </Sidebar.Item>
                 
@@ -94,7 +81,7 @@ const AppSidebar = () => {
                 <Sidebar.Item href="#" className='bg-green-200 h-20 hover:bg-green-200'>
                     <div className="flex items-center gap-2">
                         <ColoredIcon Icon={TbListNumbers} color="text-green-700 text-2xl" />
-                        <span className='font-semibold text-green-700'>Queue</span>
+                        <span className='font-semibold text-green-700 tracking-wider'>Queue</span>
                     </div>
                 </Sidebar.Item>
                 

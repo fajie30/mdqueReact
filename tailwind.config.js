@@ -24,7 +24,10 @@ module.exports = {
       backdropBlur: {
         'none': '0',
         'blur': 'blur(20px)',
-      }
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   variants: {
