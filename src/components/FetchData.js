@@ -19,7 +19,7 @@ function FetchData() {
   }, []);
 
   // send data
-  const handleSubmit = (event) => {
+  const RoleSubmit = (event) => {
     event.preventDefault();
     axios.post('http://localhost:8000/api/user_roles/', { role })
       .then(res => {
@@ -40,7 +40,7 @@ function FetchData() {
   // rendering component
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={RoleSubmit}>
       <label>
         Role:
         <input type="text" value={role} onChange={e => setRole(e.target.value)} />

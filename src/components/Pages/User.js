@@ -3,7 +3,7 @@ import ManageUser from '../Contents/ManageUser';
 const User = () => {
     return(
         <>
-            <Header pageTitle="User Management" />
+            <Header pageTitle="Manage Users" />
             <ManageUser />
         </>
     );

@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: [],
   content: [
     'node_modules/flowbite-react/lib/esm/**/*.js',
@@ -28,10 +29,18 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
+      backgroundImage: theme => ({
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-linear': 'linear-gradient(var(--tw-gradient-angle), var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
+      })
     },
   },
   variants: {
-    extend: {backdropBlur: ['responsive']},
+    extend: {
+      backdropBlur: ['responsive'],
+      backgroundImage: ['hover', 'focus'],
+    },
   },
   plugins: [
     require('flowbite/plugin'),

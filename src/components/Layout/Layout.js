@@ -1,6 +1,6 @@
 import React from 'react';
 import AppSidebar from './Sidebar';
-import MainContent from './MainContent';
+import MainContent from './RouteContents';
 
 const Layout = () => {
   return (
@@ -11,7 +11,7 @@ const Layout = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden overflow-y-auto">
+      <div className="flex-1 flex flex-col overflow-hidden overflow-y-auto px-5">
         <MainContent />
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 
 const Header = ({ pageTitle }) => {
   return (
-    <Navbar fluid className="rounded-xl bg-transparent border-b-5 border-violet-900 p-4 mb-5">
+    <Navbar fluid className="rounded-xl bg-gray-100 border-b-5 border-violet-900 p-4 mb-5 ">
       <Navbar.Brand>
         <h1 className="py-3 text-4xl font-bold text-purple-600">{ pageTitle }</h1>
       </Navbar.Brand>

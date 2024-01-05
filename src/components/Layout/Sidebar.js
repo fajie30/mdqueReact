@@ -3,22 +3,11 @@ import React from 'react';
 import { Sidebar } from 'flowbite-react';
 import { 
     TbLayoutDashboard,
-    TbUser,
+    TbUsers,
     TbBuildingHospital,
     TbListNumbers
 } from "react-icons/tb";
 import { Link, useLocation } from 'react-router-dom';
-// import {
-//     HiArrowSmRight,
-//     HiInbox,
-//     HiOutlineMinusSm,
-//     HiOutlinePlusSm,
-//     HiShoppingBag,
-//     HiTable,
-//     HiUser,
-//   } from 'react-icons/hi';
-
-// import { twMerge } from 'tailwind-merge';
 
 const AppSidebar = () => {
     const location = useLocation();
@@ -39,7 +28,7 @@ const AppSidebar = () => {
                 <Sidebar.Item 
                      as={Link} 
                      to="/admin/dashboard" 
-                     className={`${isDash ? 'active bg-purple-100 hover:bg-purple-200' : 'text-gray-500'}`}
+                     className={`${isDash ? 'active bg-purple-500 hover:bg-purple-700' : 'text-gray-500'}`}
                  >
                      <div className="flex items-center gap-2 py-1">
                          <ColoredIcon 
@@ -52,20 +41,20 @@ const AppSidebar = () => {
                 <Sidebar.Item 
                     as={Link} 
                     to="/admin/user" 
-                    className={`${isUser ? 'active bg-purple-100 hover:bg-purple-200' : 'text-gray-500'}`}
+                    className={`${isUser ? 'active bg-purple-500 hover:bg-purple-700' : 'text-gray-500'}`}
                 >
                     <div className="flex items-center gap-2 py-1">
                          <ColoredIcon 
-                             Icon={TbUser} 
+                             Icon={TbUsers} 
                              color={isUser ? 'text-purple-500 text-2xl' : 'text-gray-500 text-2xl'} 
                          />
-                         <span>User</span>
+                         <span>Users</span>
                      </div>
                 </Sidebar.Item>
                 <Sidebar.Item 
                     as={Link} 
                     to="/admin/clinic" 
-                    className={`${isClinic ? 'active bg-purple-100 hover:bg-purple-200' : 'text-gray-500'}`}
+                    className={`${isClinic ? 'active bg-purple-500 hover:bg-purple-700' : 'text-gray-500'}`}
                 >
                     <div className="flex items-center gap-2 py-1">
                          <ColoredIcon 

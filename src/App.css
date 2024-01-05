@@ -1,0 +1,7 @@
+.active{
+    color: rgb(243, 239, 249);
+}
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }

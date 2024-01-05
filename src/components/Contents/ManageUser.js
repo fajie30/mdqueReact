@@ -1,25 +1,20 @@
 
 import { 
-    TbPlus,
     TbUserEdit,
     TbUserPlus,
     TbUserX,
     TbSettings,
-    TbFileDescription,
-    TbTrashX,
+    TbFileDescription
 } from "react-icons/tb";
 import { 
     Table,
-    Dropdown
+    Dropdown,
+    Button
 } from 'flowbite-react';
-import React, { useState, 
-    useEffect, 
-    Fragment} from 'react'
-import { Listbox, 
-    Transition,
-    Dialog } from '@headlessui/react'
-import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import axios from 'axios';
+import React from 'react'
+
+
+import Role from '../Managements/AddRole'
 
 
 
@@ -41,136 +36,7 @@ import axios from 'axios';
 
 
 /////////////////////////////// dynamic dropdown ///////////////////////////////
-function Drop() {
-    let [isOpen, setIsOpen] = useState(false)
 
-    function closeModal() {
-        setIsOpen(false)
-    }
-
-    function openModal() {
-        setIsOpen(true)
-    }
-
-    const [dataRole, setData] = useState([]);
-    const [selectedRole, setSelectedRole] = useState(null);
-
-    // get data
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/user_roles')
-        .then(res => {
-            setData(res.data);
-        })
-        .catch(error => {
-            console.error('Error fetching data: ', error);
-        })
-    }, []);
-
-    return (
-        <>
-        <div>
-            {/* modal */}
-            <Transition appear show={isOpen} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                    >
-                        <div className="fixed inset-0 bg-black/25" />
-                    </Transition.Child>
-
-                    <div className="fixed inset-0 overflow-y-auto ">
-                        <div className="flex min-h-full items-center justify-center p-4 text-center">
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
-                        >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all ">
-                            <Dialog.Title
-                                as="h3"
-                                className="text-xl font-medium leading-6 text-gray-900"
-                            >
-                                Add User Role
-                            </Dialog.Title>
-                            <div className="mt-2">
-                                <p className="text-sm text-gray-500">
-                                Your payment has been successfully submitted. We’ve sent
-                                you an email with all of the details of your order.
-                                </p>
-                            </div>
-                            </Dialog.Panel>
-                        </Transition.Child>
-                        </div>
-                    </div>
-                </Dialog>
-            </Transition>
-        </div>
-
-        {/* end modal, start present role */}
-
-        <div className="w-64 z-10">
-        <Listbox value={selectedRole} onChange={setSelectedRole}>
-            <div className="relative">
-            <Listbox.Button className=" relative w-full cursor-default rounded-lg bg-white px-4 py-2 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                <span className="block truncate ">Roles</span>
-                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 ">
-                <ChevronUpDownIcon
-                    className="h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                />
-                </span>
-            </Listbox.Button>
-            <Transition
-                as={Fragment}
-                leave="transition ease-in duration-100"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-            >
-                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                <Listbox.Option
-                        key="0"
-                        className={'relative cursor-default select-none py-2 pl-3 pr-5 text-gray-900'}
-                        value="0"
-                    >
-                    <button className="text-black-500 mr-5 flex gap-5 font-semibold w-48"
-                    type="button"
-                    onClick={openModal}>
-                        <TbPlus />
-                        <span>Add Role</span>
-                    </button>
-                </Listbox.Option>
-                <hr className="border-t border-gray-200" /> {/* This is the divider */}
-                {dataRole.map((role) => (
-                    <Listbox.Option
-                        key={role.id}
-                        className={'relative cursor-default select-none py-2 pl-3 pr-5 text-gray-900'}
-                        value={role.id}
-                    >
-                        
-                        <span className={`block truncate font-normal`}>
-                        <button className="text-red-500 mr-5"><TbTrashX /></button>
-                        {role.role}
-                        </span>
-                    </Listbox.Option>
-                ))}
-                </Listbox.Options>
-            </Transition>
-            </div>
-        </Listbox>
-        </div>
-    </>
-  )
-}
 
 /////////////////////////////// customize color ///////////////////////////////
 const ColoredIcon = ({ Icon, color }) => (
@@ -244,14 +110,14 @@ const ManageUser = () => {
             <div className="flex flex-col">
                 <div className="flex flex-row px-2 fluid">
                     <div className="flex flex-row gap-2">
-                        <button className="flex items-center gap-1 bg-purple-600 text-white px-4 py-2 rounded-md">
+                        <Button className="bg-purple-600 text-white rounded-md" >
                             <ColoredIcon 
                                 Icon={TbUserPlus} 
                                 color={'text-white text-lg'} 
                             />
-                            <span className="font-semibold">Add User</span>
-                        </button><br/>
-                        <Drop/>
+                            <span className="font-semibold ml-2">Add User</span>
+                        </Button>
+                        <Role/>
                     </div>
                     <div className="rounded-xl bg-gray-400 fluid">
                         {/* Insert your bar chart here */}
