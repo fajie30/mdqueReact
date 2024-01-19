@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from '../Pages/Dashboard';
-import User from '../Pages/User';
+import {Dashboard, User} from './Pages';
 
 const MainContent = () => {
     return (

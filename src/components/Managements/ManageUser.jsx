@@ -8,42 +8,16 @@ import {
 } from "react-icons/tb";
 import { 
     Table,
-    Dropdown,
-    Button
+    Dropdown
 } from 'flowbite-react';
-import React from 'react'
+// import React, { useState, useEffect } from 'react';
+import Role from './ManageRole'
+import { UserModal } from '../Modals/UserModal'
+import { ColoredIcon } from '../Modifications/ModifiedIcons'
+import useUsers from '../Hooks/useUsers';
+import { MDBtnIcon } from "../MyComponents/Buttons";
+import { useState } from "react";
 
-
-import Role from '../Managements/AddRole'
-
-
-
-
-//   // send data
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     axios.post('http://localhost:8000/api/user_roles/', { role })
-//       .then(res => {
-//         setData([...data, res.data]);
-        
-//       })
-//       .catch(error => {
-//         console.error('Error sending data: ', error);
-//       })
-//   };
-
-
-
-
-/////////////////////////////// dynamic dropdown ///////////////////////////////
-
-
-/////////////////////////////// customize color ///////////////////////////////
-const ColoredIcon = ({ Icon, color }) => (
-    <span className={color}>
-      <Icon />
-    </span>
-);
 
 /////////////////////////////// identify user status (green/red) ///////////////////////////////
 const UserStatus = ({status}) =>{
@@ -65,58 +39,75 @@ const UserStatus = ({status}) =>{
         )
     }
 }
+
 /////////////////////////////// User table ///////////////////////////////
-const UserTable = () =>{
-    const rows = Array.from({ length: 20 }).map((_, index) => (
+const UserTable = () => {
+    const { users } = useUsers();
+  const rows = Array.isArray(users) && users.length > 0 ? (
+    users.map((user, index) => {
+        const recDate = new Date(user.date_registered).toLocaleDateString();
+      return (
         <Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{index+1}</Table.Cell>
-            <Table.Cell>09090909090</Table.Cell>
-            <Table.Cell>Admin</Table.Cell>
-            <Table.Cell>10-12-23</Table.Cell>
-            <Table.Cell>
-                <UserStatus status={'Active'}/>
-            </Table.Cell>
-            <Table.Cell className="py-1">
-                <center>
+          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{index+1}</Table.Cell>
+          <Table.Cell>{user.mobile}</Table.Cell>
+          <Table.Cell>{user.user_role ? user.user_role.role : 'Role not found'}</Table.Cell>
+          <Table.Cell>{user.date_registered ? recDate : 'No Date'}</Table.Cell>
+          <Table.Cell>
+            <UserStatus status={user.status} />
+          </Table.Cell>
+          <Table.Cell className="py-1">
+            <center>
                 <Dropdown 
                     placement="left-start"
                     arrowIcon={false}
                     label={
-                        <ColoredIcon 
-                            Icon={TbSettings} 
-                            color={'text-gray-500 text-xl'} 
+                        <ColoredIcon
+                            Icon={TbSettings}
+                            color={'text-gray-500 text-xl'}
                         />
                     }
                 >
-                    <Dropdown.Item><TbFileDescription/>&nbsp;View</Dropdown.Item>
-                    <Dropdown.Item><TbUserEdit/>&nbsp;Edit</Dropdown.Item>
+                    <Dropdown.Item><TbFileDescription />&nbsp;View</Dropdown.Item>
+                    <Dropdown.Item><TbUserEdit />&nbsp;Edit</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item className="text-red-500"><TbUserX />&nbsp;Deactivate</Dropdown.Item>
                 </Dropdown>
-                </center>
-            </Table.Cell>
+            </center>
+          </Table.Cell>
         </Table.Row>
-    ));
-    
-    return <>{rows}</>;
 
-}
+      );
+    })
+  ) : (
+        <Table.Row key={0} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell colSpan={6} className="text-center">No records found</Table.Cell>
+        </Table.Row>
+  );
+  
 
+  return { rows };
+};
 /////////////////////////////// Render ///////////////////////////////
 const ManageUser = () => {
-    
+    let [AddUModal, setAddUModal] = useState(false);
+    const closeAddUser = () => {setAddUModal(false)};
+    const openAddUser = () => {setAddUModal(true)};
+
+    const { rows } = UserTable();
     return(
         <>
             <div className="flex flex-col">
                 <div className="flex flex-row px-2 fluid">
                     <div className="flex flex-row gap-2">
-                        <Button className="bg-purple-600 text-white rounded-md" >
-                            <ColoredIcon 
-                                Icon={TbUserPlus} 
-                                color={'text-white text-lg'} 
-                            />
-                            <span className="font-semibold ml-2">Add User</span>
-                        </Button>
+                        <MDBtnIcon
+                            Icon={TbUserPlus}
+                            text="Add User"
+                            color="white"
+                            bg="purple"
+                            colorInt="600"
+                            type="button"
+                            onClick={openAddUser}
+                        />
                         <Role/>
                     </div>
                     <div className="rounded-xl bg-gray-400 fluid">
@@ -136,13 +127,18 @@ const ManageUser = () => {
                                 <Table.HeadCell><center>Action</center></Table.HeadCell>
                             </Table.Head>
                             <Table.Body className="divide-y">
-                                <UserTable />
+                                {rows}
                             </Table.Body>
                         </Table>
                     </div>
-                    
                 </div>
             </div>
+
+
+            <UserModal
+                isOpen={AddUModal}
+                closeModal={closeAddUser}
+            />
         </>
     );
 }
